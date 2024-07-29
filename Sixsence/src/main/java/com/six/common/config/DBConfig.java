@@ -45,7 +45,7 @@ public class DBConfig {
 		*/
 		return new HikariConfig(); // hikari DataBase 연결을 도와주는 라이브러리 
 	}
-	
+	//test
 	
 	@Bean // 객체생성 DataBase연결을 해주겠다.
 	public DataSource dataSource(HikariConfig config) {
