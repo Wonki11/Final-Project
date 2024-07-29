@@ -1,4 +1,3 @@
-content_assist_favorite_static_members=org.assertj.core.api.Assertions.*;org.mockito.Matchers.*;org.mockito.Mockito.*;org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.*;org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*;org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.*;org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.*;org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.*;org.springframework.test.web.client.match.MockRestRequestMatchers.*;org.springframework.test.web.client.response.MockRestResponseCreators.*;org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;org.hamcrest.CoreMatchers.*;org.junit.Assert.*
 content_assist_number_of_computers=21
 content_assist_proposals_background=255,255,255
 content_assist_proposals_foreground=0,0,0
@@ -16,7 +15,7 @@ spelling_ignore_single_letters=true
 spelling_ignore_upper=true
 spelling_ignore_urls=true
 spelling_locale_initialized=true
-spelling_user_dictionary_encoding=
+spelling_user_dictionary_encoding=UTF-8
 typefilter_migrated_2=true
 useAnnotationsPrefPage=true
 useQuickDiffPrefPage=true
