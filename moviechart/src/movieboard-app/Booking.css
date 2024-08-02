@@ -1,0 +1,242 @@
+.booking {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.movie-list {
+  width: 250px;
+  overflow-y: scroll;
+  border-right: 1px solid #ccc;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  perspective: 1000px; 
+  transition: transform 0.3s ease-in-out;
+}
+
+.movie-list::-webkit-scrollbar {
+  display: none;
+}
+
+.movie-list {
+  -ms-overflow-style: none; 
+  scrollbar-width: none;
+}
+
+.movie-list:hover {
+  transform: rotateY(-10deg);
+}
+
+.movie-item {
+  margin-bottom: 20px;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+  scroll-snap-align: start;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: rotateY(10deg);
+}
+
+.movie-item img {
+  width: 120px;
+  height: 180px;
+  object-fit: cover;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.movie-item p {
+  font-size: 14px;
+  color: #333;
+  margin: 0;
+}
+
+.movie-item:hover {
+  transform: scale(1.05) rotateY(0deg);
+}
+.movie-item img:hover {
+  transform: scale(1.05);
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.movie-info,
+.default-movie-info {
+  display: flex;
+  align-items: center;
+}
+
+.movie-info img,
+.default-movie-info img {
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 20px;
+}
+
+.default-movie-info p {
+  font-size: 18px;
+  color: #333;
+}
+
+.movie-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.total-price {
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+}
+
+.steps-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.step {
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.step p {
+  margin: 0 0 10px;
+  font-weight: bold;
+}
+
+.step-button {
+  margin-bottom: 5px;
+  padding: 10px 15px;
+  background-color: #d3d3d3;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.step-button:hover {
+  background-color: #b3b3b3;
+  transform: scale(1.05);
+}
+
+.seat-selection input {
+  width: 50px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.screen {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.seats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.seat-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.row-label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.seat {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  background-color: #ddd;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.seat.selected {
+  background-color: green;
+  transform: scale(1.1);
+}
+
+.seat:disabled {
+  background-color: red;
+  cursor: not-allowed;
+}
+
+.seat:hover:not(:disabled):not(.selected) {
+  background-color: #bbb;
+  transform: scale(1.05);
+}
+
+.notice {
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.notice p {
+  margin: 0 0 10px;
+}
+
+.notice ol {
+  padding-left: 20px;
+}
+
+.confirm-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #444;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 5px;
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.confirm-button:hover {
+  background-color: #333;
+  transform: scale(1.05);
+}
