@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react';
 import { useLocation} from 'react-router-dom';
 import './Booking.css';
 //import movieData from './movies.json';
-import axios from 'axios'; // 비동기로 axios를 사용해서 영화 데이터 로딩
+import axios from 'axios'; // 비동기로 axios를 사용해서 영화 데이터 로딩 경로설정 
 
 const Booking = () => {
     const location = useLocation(); // 전 무비차트페이지에서 선택한 값을 저장후 예매티켓으로 넘어오게끔 지정
