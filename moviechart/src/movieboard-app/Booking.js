@@ -14,6 +14,8 @@ const Booking = () => {
     const [selectedRegion, setSelectedRegion] = useState(null);
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
+    const [adultTickets, setAdultTickets] = useState(null); // 일반 
+    const [childTickets, setChildTickets] = useState(null); // 청소년 
 
     useEffect(() => {
        const fetchMovies = async () => {
@@ -45,7 +47,7 @@ const Booking = () => {
     const handleSeatClick = (seat) => {
         if (selectedSeat.includes(seat)) {
             setSelectedSeat(selectedSeat.filter(s => s !== seat));
-        } else if (selectedSeat.length < numPeople) {
+        } else if (selectedSeat.length < (adultTickets + childTickets)) {
             setSelectedSeat([...selectedSeat, seat]);
         }
     };
@@ -89,6 +91,39 @@ const Booking = () => {
         return options;
     };
 
+    const handleAdultTickets = (e) => {
+        const value = parseInt(e.target.value);
+        if (!isNaN(value) && value >= 0 && value <= 4 && (value + childTickets) <= 4) {
+            setAdultTickets(value);
+            setSelectedSeat([]); // 티켓수 변경시 좌석 초기화
+        }
+    }
+
+    const handlechildTickets = (e) => {
+        const value = parseInt(e.target.value);
+        if (!isNaN(value) && value >= 0 && value <= 4 && (value + adultTickets) <= 4) {
+            setChildTickets(value);
+            setSelectedSeat([]); // 티켓수 변경시 좌석 초기화
+        }
+    }
+
+    const TotalPrice = () => {
+        return (adultTickets * 10000) + (childTickets * 8000);
+    }
+
+    const resetbutton = () => {
+        setSelectedMovie(null);
+        setSelectedRegion(null);
+        setSelectedSeat([]);
+        setSelectedTime(null);
+        setSelectedDate(null);
+        setNumPeople(1);
+        setAdultTickets(0);
+        setChildTickets(0);
+    }
+
+    
+
   
     return (
         <div className="booking">
@@ -101,20 +136,29 @@ const Booking = () => {
                 ))}
             </div>
             <div className="content">
+            <div className='resetbutton'>
+                                <button className='resetbutton' onClick={resetbutton} >예매 다시하기</button>
+                                </div> 
                 <div className="header">
                     {selectedMovie ? (
-                        <>
+                        <>         
+                            
                             <div className="movie-info">
+                               
                                 <img src={getPosterPath(selectedMovie)} alt="Movie Poster" />
                                 <div className="movie-details">
                                     <p>영화 : {selectedMovie.title}</p>
                                     <p>영화관 : {selectedRegion}</p>
-                                    <p>관람일시 : {selectedDate} {selectedTime}</p>
+                                    <p>관람일시 : {selectedDate}</p>
+                                    <p>상영시간 : {selectedTime}</p>
                                     <p>선택좌석 : {selectedSeat.length > 0 ? selectedSeat.join(', ') : '없음'}</p>
                                 </div>
                             </div>
                             <div className="total-price">
-                                <p>총 결제금액: 0원</p>
+                                <div className='infobutton'>
+                                <p>총 결제금액: {TotalPrice()} 원</p>
+                                <button className="confirm-button">결제</button>
+                                </div>
                             </div>
                         </>
                     ) : (
@@ -150,20 +194,32 @@ const Booking = () => {
                     <div className="step">
                         <p>STEP4: 좌석 및 잔여석 확인</p>
                         <div className="seat-selection">
+                            <label>일반 (10000원)
                             <input 
                                 type="number" 
-                                min="1" 
+                                min="0" 
                                 max="4"
-                                value={numPeople} 
-                                onChange={handleNumPeopleChange} 
+                                value={adultTickets} 
+                                onChange={handleAdultTickets} 
                             />
+                            <br/>
+                            </label>
+                            <label>청소년 (8000원)
+                            <input 
+                                type="number" 
+                                min="0" 
+                                max="4"
+                                value={childTickets} 
+                                onChange={handlechildTickets} 
+                            />
+                            </label>
                         </div>
                     </div>
                 </div>
                 <div className="screen">
-                    <p>SCREEN</p>
+                    <p className='moviescreen'>SCREEN</p>
                     <div className="seats">
-                        {['A', 'B', 'C', 'D', 'E'].map((row) => (
+                        {['A', 'B', 'C', 'D', 'E' ,'F' ,'G','H'].map((row) => (
                             <div key={row} className="seat-row">
                                 <span className="row-label">{row}</span>
                                 {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((col) => (
@@ -182,15 +238,15 @@ const Booking = () => {
                 </div>
                 <div className="notice">
                     <p>예매 시 주의사항</p>
-                    <ol>
-                        <li>홈페이지 예매 후 영화별 실수관번호 발행될 수 있습니다.</li>
-                        <li>영화 예매는 관람일 전날 취소 시 수수료 없이 취소 가능합니다.</li>
-                        <li>상영관 입장은 상영시간 10분 전부터 가능합니다.</li>
-                        <li>할인혜택은 중복적용이 불가합니다.</li>
-                        <li>좌석은 한 계정당 4자리만 예매 가능합니다.</li>
-                    </ol>
+                    
+                    <dl>
+                        <dt>1. 홈페이지 예매 후 영화별 실수관번호 발행될 수 있습니다.</dt>
+                        <dt>2. 영화 예매는 관람일 전날 취소 시 수수료 없이 취소 가능합니다.</dt>
+                        <dt>3. 상영관 입장은 상영시간 10분 전부터 가능합니다.</dt>
+                        <dt>4. 할인혜택은 중복적용이 불가합니다.</dt>
+                        <dt>5. 좌석은 한 계정당 총 4자리만 예매 가능합니다.</dt>
+                    </dl>
                 </div>
-                <button className="confirm-button">결제</button>
             </div>
         </div>
     );

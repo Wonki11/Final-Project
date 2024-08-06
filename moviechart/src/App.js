@@ -10,6 +10,7 @@ const App = () => {
     <Router>
       <div className="App">
         <h1 className='movieline'>무비차트</h1>
+        
         <Routes>
           <Route path="/" element={<MovieChart />} />
           <Route path="/movieboard-app" element={<Booking />} />

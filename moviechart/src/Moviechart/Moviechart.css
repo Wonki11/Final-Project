@@ -53,9 +53,10 @@
 
 .movieline {
     border-bottom: 2px solid #333;
-    padding-bottom: 10px;
-    text-align: left;
-    padding-left: 350px;    
+    padding-bottom: 5px;
+    text-align: center;
+    margin: 5px;
+    
 }
 .movie-options {
     margin-bottom: 20px;

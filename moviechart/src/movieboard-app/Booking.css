@@ -84,14 +84,15 @@
 
 .movie-info,
 .default-movie-info {
+  margin-left: 15px;
   display: flex;
   align-items: center;
 }
 
 .movie-info img,
 .default-movie-info img {
-  width: 100px;
-  height: 150px;
+  width: 160px;
+  height: 250px;
   object-fit: cover;
   border-radius: 5px;
   margin-right: 20px;
@@ -106,6 +107,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-left: 30px;
 }
 
 .total-price {
@@ -122,6 +124,7 @@
 }
 
 .step {
+  width: 350px;
   padding: 10px;
   background-color: #f9f9f9;
   border-radius: 5px;
@@ -151,21 +154,51 @@
   transform: scale(1.05);
 }
 
+.seat-selection {
+  display: flex;
+  flex-direction: column;
+  gap:  10px;
+}
+
+.seat-selection label {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
 .seat-selection input {
   width: 50px;
   padding: 5px;
   font-size: 16px;
 }
 
+.seat-selection input[type="number"] {
+  width: 60px;
+  padding: 5px;
+  margin-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.seat-selection input[type="number"]:focus {
+  border-color: #007BFF;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
 .screen {
   text-align: center;
   margin-bottom: 20px;
+  
 }
 
 .seats {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 50px;
 }
 
 .seat-row {
@@ -213,6 +246,7 @@
   box-sizing: border-box;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
 }
 
 .notice p {
@@ -223,9 +257,14 @@
   padding-left: 20px;
 }
 
+.notice th dd {
+  text-align: center;
+}
+
 .confirm-button {
   display: block;
   width: 100%;
+  height: 50px;
   padding: 10px;
   background-color: #444;
   color: white;
@@ -240,3 +279,18 @@
   background-color: #333;
   transform: scale(1.05);
 }
+
+.moviescreen {
+  background-color: #ccc;
+  width: 500px;
+  margin: auto;
+  
+}
+.resetbutton {
+  text-align: right;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+
+
+
