@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.six.mapper.MT_mapper">
+	<select id="MTAll" resultType="com.six.dot.MovieTicket">
+	SELECT * FROM MOVIEPAY
+	</select>
+	
+	<insert id="insertMT" parameterType="com.six.dto.MT_dto">
+		INSERT INTO MOVIEPAY (moviepay_no , moviepay_adult , moviepay_child , moviepay_adultpay , moviepay_childpay , moviepay_price , moviepay_seat , moviepay_paydate , moviepay_point_use , moviepay_point , moviepay_refund , moviepay_viewdate , moviepay_viewtime , movie_no , member_no)
+					VALUES(#{moviepay_no},
+						   #{moviepay_adult},
+						   #{moviepay_child},
+						   #{moviepay_adultpay},
+						   #{moviepay_childpay},
+						   #{moviepay_price},
+						   #{moviepay_seat},
+						   #{moviepay_paydate},
+						   #{moviepay_point_use},
+						   #{moviepay_point},
+						   #{moviepay_refund},
+						   #{moviepay_viewdate},
+						   #{moviepay_viewtime},
+						   #{movie_no},
+						   #{member_no}    )
+	</insert>
+
+</mapper>
