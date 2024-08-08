@@ -14,6 +14,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<MovieChart />} />
           <Route path="/Movieboard-app" element={<Booking />} />
+          
         </Routes>
       </div>
     </Router>
