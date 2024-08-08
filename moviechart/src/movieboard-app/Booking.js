@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation , useNavigate } from "react-router-dom";
 import "./Booking.css";
 import axios from "axios"; // 비동기로 axios를 사용해서 영화 데이터 로딩 경로설정
 
@@ -16,9 +16,10 @@ const Booking = () => {
   const [selectedTime, setSelectedTime] = useState(null);
   const [adultTickets, setAdultTickets] = useState(null); // 일반
   const [childTickets, setChildTickets] = useState(null); // 청소년
-  const [totalPoints, setTotalPoints] = useState(0);
-  const [usePoints, setUsePoints] = useState(0);
-  const [usingPoints, setUsingPoints] = useState(false);
+  const [totalPoints, setTotalPoints] = useState(0); // 적립될 총 포인트
+  const [usePoints, setUsePoints] = useState(0); // 사용한 포인트
+  const [usingPoints, setUsingPoints] = useState(false); // 사용할 수 있는 포인트
+  const navigate = useNavigate(); // navigate : 특정 행동을 했을 때 해당 주소로 이동해줄 수 있게 만들어주는 함수
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -55,12 +56,12 @@ const Booking = () => {
   const handleSeatClick = (seat) => {
     if (selectedSeat.includes(seat)) {
       setSelectedSeat(selectedSeat.filter((s) => s !== seat));
-    } else if (selectedSeat.length < adultTickets + childTickets) {
+    } else if (selectedSeat.length < (adultTickets + childTickets)) {
       setSelectedSeat([...selectedSeat, seat]);
     }
   };
 
-  const handleNumPeopleChange = (event) => {
+  const handleNumPeopleChange = (event) => { // 인원고르는 인풋박스 숫자만 들어갈수있게 설정한 기능
     const value = parseInt(event.target.value);
     if (!isNaN(value) && value >= 1 && value <= 4) {
       setNumPeople(value);
@@ -174,7 +175,38 @@ const Booking = () => {
     setNumPeople(1);
     setAdultTickets(0);
     setChildTickets(0);
+    setUsePoints(false);
   };
+
+  const handleConfirmPayment   = () => {
+    if(
+      !selectedMovie || 
+      !selectedRegion || 
+      !selectedDate || 
+      !selectedTime ||
+      (adultTickets === 0 && childTickets === 0) ||
+      !selectedSeat.length === 0 ) {
+      alert('모든 항목을 선택해야 결제 페이지로 넘어갑니다.')
+      return;
+    }
+  
+
+
+ 
+    const getPoints = Accumulate();
+    setTotalPoints(totalPoints + getPoints - usePoints); 
+    alert(`결제 페이지로 넘어갑니다.`); // 결제 성공시 적립될 포인트 : ${getPoints}, 사용된 포인트 : ${usePoints}
+    resetbutton(); // 결제가 되면 모든 기능 초기화
+    navigate('/PaymentCheckoutPage'); // 결제페이지
+  };
+
+
+
+ 
+
+  
+
+ 
 
   return (
     <div className="booking">
@@ -232,7 +264,7 @@ const Booking = () => {
                     </p>
                   )}
                   <p>적립될 포인트 : {Accumulate()}점</p>
-                  <button className="confirm-button">결제</button>
+                  <button className="confirm-button" onClick={handleConfirmPayment}>결제</button>
                 </div>
               </div>
               <div>
@@ -244,6 +276,7 @@ const Booking = () => {
               <img
                 src={process.env.PUBLIC_URL + "/movieimages/select_movie1.jpg"}
                 alt="Default"
+                // 선택된 영화가 default 값일때 이미지경로를 설정해서 이미지 가져옴
               />
               <p>선택한 영화가 없습니다.</p>
             </div>
@@ -376,6 +409,6 @@ const Booking = () => {
       </div>
     </div>
   );
-};
+}; 
 
 export default Booking;

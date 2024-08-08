@@ -36,6 +36,7 @@ const MovieChart = () => {
     }
     return 0;
   });
+  // 무비 카테고리 별로 나누는 기능 rating : average 평점 alphabetical 가나다 순
 
   return (
     <div>

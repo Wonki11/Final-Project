@@ -4,6 +4,7 @@ import './Moviechart/Moviechart.css';
 import MovieChart from './Moviechart/Moviechart';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Booking from '../src/Movieboard-app/Booking';  // Booking 컴포넌트 임포트
+import { PaymentCheckoutPage } from './Movietosspay/PaymentCheckoutPage';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<MovieChart />} />
           <Route path="/Movieboard-app" element={<Booking />} />
+          <Route path="/Movietosspay" element={<PaymentCheckoutPage />} />
           
         </Routes>
       </div>
